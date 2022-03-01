@@ -58,6 +58,10 @@ const Login = props => {
     }
   };
 
+  const goRegister = () => {
+    history.push('/register');
+  }
+
   return (
     <BaseContainer>
       <div className="login container">
@@ -79,6 +83,14 @@ const Login = props => {
               onClick={() => doLogin()}
             >
               Login
+            </Button>
+          </div>
+          <div className="login button-container1">
+            <Button
+              width="100%"
+              onClick={()=> goRegister()}
+              >
+                Register
             </Button>
           </div>
         </div>

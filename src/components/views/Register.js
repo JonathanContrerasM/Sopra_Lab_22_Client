@@ -59,6 +59,10 @@ const Register = props => {
         }
     };
 
+    const backLogin = async () => {
+        history.push('/login')
+    }
+
     return (
         <BaseContainer>
             <div className="register container">
@@ -76,15 +80,23 @@ const Register = props => {
                     <FormField
                         label="Password"
                         value={password}
-                        onChange={p => setPassword}
+                        onChange={p => setPassword(p)}
                     />
                     <div className="register button-container">
                         <Button
-                            disabled={!username || !name}
+                            disabled={!username || !name || !password}
                             width="100%"
                             onClick={() => doLogin()}
                         >
-                            Login
+                            Register
+                        </Button>
+                    </div>
+                    <div className="register button-container1">
+                        <Button
+                            width="40%"
+                            onClick={() => backLogin()}
+                        >
+                            Back to the Login
                         </Button>
                     </div>
                 </div>
