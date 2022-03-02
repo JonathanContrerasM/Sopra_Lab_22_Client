@@ -41,7 +41,7 @@ const Register = props => {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null)
 
-    const doLogin = async () => {
+    const doRegister = async () => {
         try {
             const requestBody = JSON.stringify({username, name, password});
             const response = await api.post('/users', requestBody);
@@ -86,7 +86,7 @@ const Register = props => {
                         <Button
                             disabled={!username || !name || !password}
                             width="100%"
-                            onClick={() => doLogin()}
+                            onClick={() => doRegister()}
                         >
                             Register
                         </Button>

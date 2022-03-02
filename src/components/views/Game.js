@@ -94,7 +94,7 @@ const Game = () => {
 
   return (
     <BaseContainer className="game container">
-      <h2>Happy Coding!</h2>
+      <h2>List of all Members</h2>
       <p className="game paragraph">
         Get all users from secure endpoint:
       </p>
