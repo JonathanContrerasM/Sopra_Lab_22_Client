@@ -1,6 +1,8 @@
 import {Redirect, Route} from "react-router-dom";
 import Game from "components/views/Game";
 import PropTypes from 'prop-types';
+import User from "components/views/User";
+
 
 const GameRouter = props => {
   /**
@@ -13,6 +15,9 @@ const GameRouter = props => {
       </Route>
       <Route exact path={`${props.base}`}>
         <Redirect to={`${props.base}/dashboard`}/>
+      </Route>
+      <Route path={`${props.base}/users/:id`} exact>
+        <User/>
       </Route>
     </div>
   );

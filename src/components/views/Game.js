@@ -7,8 +7,8 @@ import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 
-const Player = ({user}) => (
-  <div className="player container">
+const Player = ({user, history}) => (
+  <div className="player container" onClick = {()=>history.push("/game/users/"+ user.id)}>
     <div className="player username">{user.username}</div>
     <div className="player name">{user.name}</div>
     <div className="player id">id: {user.id}</div>
@@ -32,7 +32,13 @@ const Game = () => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem("currentUserid")
     history.push('/login');
+  }
+
+
+  const goPlayer = () => {
+      history.push('/login');
   }
 
   // the effect hook can be used to react to change in your component.
@@ -76,11 +82,25 @@ const Game = () => {
 
   if (users) {
     content = (
+
       <div className="game">
-        <ul className="game user-list">
+
+          <ul className="game user-list"
+              //here it worked
+
+          >
+
           {users.map(user => (
-            <Player user={user} key={user.id}/>
+
+                  <Player
+
+                      user={user} key={user.id} history={history}
+                      onClick ={console.log("oarsch")}
+                      //onClick={()=> history.push('/loginaaaa?id=' + user.id)}
+
+                  />
           ))}
+
         </ul>
         <Button
           width="100%"
@@ -96,9 +116,10 @@ const Game = () => {
     <BaseContainer className="game container">
       <h2>List of all Members</h2>
       <p className="game paragraph">
-        Get all users from secure endpoint:
+
       </p>
       {content}
+
     </BaseContainer>
   );
 }
