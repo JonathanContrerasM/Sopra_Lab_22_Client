@@ -59,6 +59,7 @@ const Game = () => {
         // Get the returned users and update the state.
         setUsers(response.data);
 
+
         // This is just some data for you to see what is available.
         // Feel free to remove it.
         console.log('request to:', response.request.responseURL);
@@ -85,22 +86,12 @@ const Game = () => {
 
       <div className="game">
 
-          <ul className="game user-list"
-              //here it worked
-
-          >
+          <ul className="game user-list">
 
           {users.map(user => (
-
                   <Player
-
-                      user={user} key={user.id} history={history}
-                      onClick ={console.log("oarsch")}
-                      //onClick={()=> history.push('/loginaaaa?id=' + user.id)}
-
-                  />
+                      user={user} key={user.id} history={history} />
           ))}
-
         </ul>
         <Button
           width="100%"
