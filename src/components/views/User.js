@@ -13,6 +13,7 @@ const Player = ({user}) => (
         <div className="player username">Username: {user.username}</div>
         <div className="player name1">Name: {user.name}</div>
         <div className="player id">id: {user.id}</div>
+        <div className="player token">token: {user.token}</div>
     </div>
 );
 
@@ -59,6 +60,12 @@ const User = () => {
 
                 // Get the returned user and update the state.
                 setUser(response.data);
+                console.log("Kevon")
+                console.log(response.data)
+
+
+                console.log("Kevon")
+
 
 
                 // This is just some data for you to see what is available.
@@ -106,6 +113,7 @@ const User = () => {
                 </div>
                 <div className="game button-container">
                     <Button
+                        disabled={localStorage.getItem("token") != user.token}
                         width="50%"
                         onClick={() => logout()}
                     >
