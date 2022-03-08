@@ -31,15 +31,26 @@ const Game = () => {
   const [users, setUsers] = useState(null);
 
   const logout = () => {
+    setOffline();
     localStorage.removeItem('token');
-    localStorage.removeItem("currentUserid")
+    localStorage.removeItem("currentUserid");
     history.push('/login');
   }
 
+ const setOffline = async () => {
+    try {
+      let x = localStorage.getItem('currentUserId');
+      const response = await api.put("/setOffline/"+x);
+      console.log(response);
 
-  const goPlayer = () => {
-      history.push('/login');
+        }catch (error) {
+            console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("Something went wrong while fetching the users! See the console for details.");
+       }
   }
+
+
 
   // the effect hook can be used to react to change in your component.
   // in this case, the effect hook is only run once, the first time the component is mounted

@@ -13,7 +13,6 @@ const Player = ({user}) => (
         <div className="player username">Username: {user.username}</div>
         <div className="player name1">Name: {user.name}</div>
         <div className="player id">id: {user.id}</div>
-        <div className="player token">token: {user.token}</div>
     </div>
 );
 
@@ -38,9 +37,23 @@ const User = () => {
 
 
     const logout = () => {
+        setOffline();
         localStorage.removeItem('token');
-        localStorage.removeItem("currentUserid")
+        localStorage.removeItem("currentUserid");
         history.push('/login');
+    }
+
+    const setOffline = async () => {
+        try {
+            let x = localStorage.getItem('currentUserId');
+            const response = await api.put("/setOffline/"+x);
+            console.log(response);
+
+        }catch (error) {
+            console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+            console.error("Details:", error);
+            alert("Something went wrong while fetching the users! See the console for details.");
+        }
     }
 
 
@@ -60,12 +73,6 @@ const User = () => {
 
                 // Get the returned user and update the state.
                 setUser(response.data);
-                console.log("Kevon")
-                console.log(response.data)
-
-
-                console.log("Kevon")
-
 
 
                 // This is just some data for you to see what is available.
@@ -119,13 +126,10 @@ const User = () => {
                     >
                         Edit
                     </Button>
-
-
                 </div>
                 <div className="game button-container1">
                     <Button
                         width="10%"
-
                         onClick={() => logout()}
                     >
                         Logout
@@ -135,9 +139,6 @@ const User = () => {
             </div>
         );
     }
-
-
-
 
 
         return (
