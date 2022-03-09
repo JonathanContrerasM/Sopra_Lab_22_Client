@@ -60,7 +60,7 @@ const Register = props => {
         }
     };
 
-    const backLogin = async () => {
+    const backLogin = () => {
         history.push('/login')
     }
 

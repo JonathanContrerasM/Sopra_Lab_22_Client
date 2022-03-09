@@ -7,9 +7,11 @@ import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
 import * as url from "url";
+import {Logout} from "../../helpers/common";
+
 
 const Player = ({user}) => (
-    <div className="player container1" >
+    <div className="player container1">
         <div className="player username">Username: {user.username}</div>
         <div className="player name1">Name: {user.name}</div>
         <div className="player id">id: {user.id}</div>
@@ -17,7 +19,7 @@ const Player = ({user}) => (
 );
 
 const PlayerMoreInfo = ({user}) => (
-    <div className="player container1" >
+    <div className="player container1">
         <div className="player registrationDate">Registration Date: {user.registrationDate} </div>
         <div className={"player birthDate"}>Birth Date: {user.birthDate}</div>
         <div className={"player status"}>Status: {user.status}</div>
@@ -36,33 +38,12 @@ const User = () => {
     const [user, setUser] = useState(null);
 
 
-    const logout = () => {
-        setOffline();
-        localStorage.removeItem('token');
-        localStorage.removeItem("currentUserid");
-        history.push('/login');
-    }
-
-    const setOffline = async () => {
-        try {
-            let x = localStorage.getItem('currentUserId');
-            const response = await api.put("/setOffline/"+x);
-            console.log(response);
-
-        }catch (error) {
-            console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-            console.error("Details:", error);
-            alert("Something went wrong while fetching the users! See the console for details.");
-        }
-    }
-
-
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                console.log('/users/'+id)
-                const response = await api.get('/users/'+id);
+                console.log('/users/' + id)
+                const response = await api.get('/users/' + id);
 
 
                 // delays continuous execution of an async operation for 1 second.
@@ -96,7 +77,7 @@ const User = () => {
 
     let content = <Spinner/>;
 
-   const {id}= useParams();
+    const {id} = useParams();
 
     if (user) {
         content = (
@@ -105,8 +86,7 @@ const User = () => {
 
                 <ul className="game user-list">
 
-
-                        <Player user={user} key={user.id}/>
+                    <Player user={user} key={user.id}/>
                     <PlayerMoreInfo user={user} key={user.id}/>
 
                 </ul>
@@ -120,9 +100,10 @@ const User = () => {
                 </div>
                 <div className="game button-container">
                     <Button
-                        disabled={localStorage.getItem("token") != user.token}
+                        disabled={localStorage.getItem("token") !== user.token}
                         width="50%"
-                        onClick={() => logout()}
+                        // Add the Edit here
+                        //onClick={() => logout()}
                     >
                         Edit
                     </Button>
@@ -130,7 +111,7 @@ const User = () => {
                 <div className="game button-container1">
                     <Button
                         width="10%"
-                        onClick={() => logout()}
+                        onClick={() => Logout(history)}
                     >
                         Logout
                     </Button>
@@ -141,16 +122,15 @@ const User = () => {
     }
 
 
-        return (
-            <BaseContainer className="game container1">
-                <h2>Member</h2>
-                <p className="game paragraph">
+    return (
+        <BaseContainer className="game container1">
+            <h2>Member</h2>
+            <p className="game paragraph">
 
-                </p>
-                {content}
-
-            </BaseContainer>
-        );
+            </p>
+            {content}
+        </BaseContainer>
+    );
 }
 
 export default User;
