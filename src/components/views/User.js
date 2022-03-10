@@ -4,9 +4,7 @@ import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
 import {useHistory, useParams} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
 import "styles/views/Game.scss";
-import * as url from "url";
 import {Logout} from "../../helpers/common";
 
 
@@ -18,26 +16,27 @@ const Player = ({user}) => (
     </div>
 );
 
-const PlayerMoreInfo = ({user}) => (
+const PlayerMoreInfo = ({user}) =>{
+    const birthDate = new Date(user.birthDate);
+    const registrationDate = new Date(user.registrationDate);
+    const registrationDateStringFormat = registrationDate.toLocaleDateString("de-DE")+" - "+registrationDate.toLocaleTimeString("de-DE");
+    return(
     <div className="player container1">
-        <div className="player registrationDate">Registration Date: {user.registrationDate} </div>
-        <div className={"player birthDate"}>Birth Date: {user.birthDate}</div>
+        <div className="player registrationDate">Registration Date: {registrationDateStringFormat} </div>
+        <div className={"player birthDate"}>Birth Date: {birthDate.toLocaleDateString("de-DE")}</div>
         <div className={"player status"}>Status: {user.status}</div>
     </div>
 );
+
+};
 
 const User = () => {
 
     const history = useHistory();
 
-    // define a state variable (using the state hook).
-    // if this variable changes, the component will re-render, but the variable will
-    // keep its value throughout render cycles.
-    // a component can have as many state variables as you like.
-    // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [user, setUser] = useState(null);
 
-
+    //Gets the user with the path id
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
@@ -45,19 +44,12 @@ const User = () => {
                 console.log('/users/' + id)
                 const response = await api.get('/users/' + id);
 
-
-                // delays continuous execution of an async operation for 1 second.
-                // This is just a fake async call, so that the spinner can be displayed
-                // feel free to remove it :)
                 await new Promise(resolve => setTimeout(resolve, 1000));
-
 
                 // Get the returned user and update the state.
                 setUser(response.data);
 
 
-                // This is just some data for you to see what is available.
-                // Feel free to remove it.
                 console.log('request to:', response.request.responseURL);
                 console.log('status code:', response.status);
                 console.log('status text:', response.statusText);
@@ -73,6 +65,7 @@ const User = () => {
         }
 
         fetchData();
+        //suggested to delete this array
     }, []);
 
     let content = <Spinner/>;
@@ -102,8 +95,7 @@ const User = () => {
                     <Button
                         disabled={localStorage.getItem("token") !== user.token}
                         width="50%"
-                        // Add the Edit here
-                        //onClick={() => logout()}
+                        onClick={() => history.push("/game/users/" + user.id + "/edit")}
                     >
                         Edit
                     </Button>
@@ -124,7 +116,7 @@ const User = () => {
 
     return (
         <BaseContainer className="game container1">
-            <h2>Member</h2>
+            <h2>User Overview</h2>
             <p className="game paragraph">
 
             </p>

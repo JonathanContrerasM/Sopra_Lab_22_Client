@@ -35,6 +35,7 @@ FormField.propTypes = {
     onChange: PropTypes.func
 };
 
+//Posts the input data to the server and creates new user
 const Register = props => {
     const history = useHistory();
     const [name, setName] = useState(null);

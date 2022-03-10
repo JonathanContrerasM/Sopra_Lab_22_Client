@@ -5,6 +5,7 @@ import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
 import {RegisterGuard} from "components/routing/routeProtectors/RegisterGuard";
 import Register from "components/views/Register";
+import UserEdit from "../../views/UserEdit";
 
 
 /**
@@ -38,6 +39,7 @@ const AppRouter = () => {
           <Route exact path="/">
             <Redirect to="/game"/>
           </Route>
+
         </Switch>
       </BrowserRouter>
   );

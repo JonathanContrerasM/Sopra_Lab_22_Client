@@ -13,8 +13,8 @@ export function Logout(history) {
 export const setOffline = async () => {
     try {
 
-        let x = localStorage.getItem('currentUserId');
-        const response = await api.put("/setOffline/" + x);
+        let currentUserId = localStorage.getItem('currentUserId');
+        const response = await api.put("/setOffline/" + currentUserId);
         console.log(response);
 
     } catch (error) {

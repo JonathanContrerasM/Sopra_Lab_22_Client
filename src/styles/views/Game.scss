@@ -17,6 +17,7 @@
     align-items: center;
     box-shadow: $dropShadow;
   }
+
   &.container1 {
     background: $background;
     padding: 1.5em;
@@ -27,17 +28,32 @@
     align-items: center;
     box-shadow: $dropShadow;
   }
+
+  &.container2 {
+    background: $background;
+    padding: 1.5em;
+    border-radius: $borderRadius;
+    display: flex;
+    min-height: 20em;
+    min-width: 20em;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: $dropShadow;
+  }
+
   &.user-list {
     list-style: none;
     padding-left: 0;
   }
+
   &.user-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  & p,h2 {
+
+  & p, h2 {
     margin: 0.5em 0;
   }
 
@@ -47,15 +63,24 @@
     margin-top: 0.7em;
 
   }
+
   &.button-container1 {
     display: flex;
     justify-content: left;
     margin-top: 0.7em;
   }
+
   &.button-container2 {
     display: flex;
     justify-content: right;
     margin-top: 0.7em;
+  }
+
+  &.button-container3 {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.7em;
+    min-width: 8em;
   }
 }
 
@@ -73,7 +98,7 @@
   &.container1 {
     margin: 0.5em 0;
     width: 60em;
-    min-height: 10em;  //here
+    min-height: 10em; //here
     padding: 10px;
     border-radius: $borderRadius;
     display: flex;
@@ -90,10 +115,12 @@
     font-weight: 300;
     margin-left: auto;
   }
+
   &.username {
     font-weight: 500;
     color: $accent;
   }
+
   &.id {
     margin-left: auto;
     margin-right: 10px;
@@ -101,27 +128,30 @@
     font-weight: 300;
   }
 
-  &.status{
+  &.status {
     margin-left: auto;
     margin-right: 10px;
     font-family: $fontMono;
     font-weight: 300;
 
   }
-  &.registrationDate{
+
+  &.registrationDate {
     margin-left: auto;
     margin-right: auto;
     font-family: $fontMono;
     font-weight: 300;
   }
-  &.birthDate{
+
+  &.birthDate {
     margin-left: auto;
     margin-right: 10px;
     font-family: $fontMono;
     font-weight: 300;
 
   }
-  &.token{
+
+  &.token {
     margin-left: auto;
     margin-right: 10px;
     font-family: $fontMono;
