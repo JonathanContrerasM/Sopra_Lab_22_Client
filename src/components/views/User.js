@@ -17,13 +17,24 @@ const Player = ({user}) => (
 );
 
 const PlayerMoreInfo = ({user}) =>{
-    const birthDate = new Date(user.birthDate);
+
+
+    if (user.birthDate == null){
+        var birthDate = null;
+    }else {
+        const bday = new Date(user.birthDate);
+        var birthDate = bday.toLocaleDateString("de-DE")
+    }
+
+
     const registrationDate = new Date(user.registrationDate);
     const registrationDateStringFormat = registrationDate.toLocaleDateString("de-DE")+" - "+registrationDate.toLocaleTimeString("de-DE");
+
     return(
     <div className="player container1">
         <div className="player registrationDate">Registration Date: {registrationDateStringFormat} </div>
-        <div className={"player birthDate"}>Birth Date: {birthDate.toLocaleDateString("de-DE")}</div>
+
+        <div className={"player birthDate"}>Birth Date: {birthDate}</div>
         <div className={"player status"}>Status: {user.status}</div>
     </div>
 );
@@ -80,6 +91,7 @@ const User = () => {
                 <ul className="game user-list">
 
                     <Player user={user} key={user.id}/>
+
                     <PlayerMoreInfo user={user} key={user.id}/>
 
                 </ul>

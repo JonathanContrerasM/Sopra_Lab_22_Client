@@ -45,6 +45,14 @@
     text-transform: lowercase;
     font-weight: 300;
   }
+  &.label1 {
+    color: $textColor;
+    margin-bottom: 15px;
+
+    font-weight: 400;
+    text-align: center;
+  }
+
   &.button-container {
     display: flex;
     justify-content: center;

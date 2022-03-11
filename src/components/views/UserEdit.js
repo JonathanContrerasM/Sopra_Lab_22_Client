@@ -13,7 +13,7 @@ import DatePicker from 'react-date-picker';
 const FormField = props => {
     return (
         <div className="login field">
-            <label className="login label">
+            <label className="login label1">
                 {props.label}
             </label>
             <input
@@ -49,9 +49,8 @@ const UserEdit = props => {
 
                 // Get the returned user and update the state.
                 setNewUsername(response.data.username);
-                if(response.data.birthDate!=null){
+                if (response.data.birthDate != null) {
                     setNewBirthDate(new Date(response.data.birthDate));
-
                 }
 
 
@@ -85,7 +84,7 @@ const UserEdit = props => {
         try {
 
             console.log('/users/' + id)
-            const requestBody = JSON.stringify({username, birthDate});
+            const requestBody = JSON.stringify({username, birthDate, id});
 
             const response = await api.put('/users/' + id, requestBody);
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -129,10 +128,13 @@ const UserEdit = props => {
                     Birthdate
 
                 </legend>
-                <DatePicker
+                <p>
 
-                    value ={birthDate}
-                    dateFormat ="MM-dd-yyyy"
+                </p>
+                <DatePicker
+                    label="come on"
+                    value={birthDate}
+                    dateFormat="MM-dd-yyyy"
                     onChange={d => setNewBirthDate(d)}
 
                 />
