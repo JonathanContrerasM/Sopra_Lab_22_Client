@@ -32,7 +32,7 @@ const UserEdit = props => {
     const history = useHistory();
     const {id} = useParams();
 
-    //Gets the user to extract current Username and Birthdate
+    //Gets the user to extract current Username and Birthday
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
@@ -49,8 +49,8 @@ const UserEdit = props => {
 
                 // Get the returned user and update the state.
                 setNewUsername(response.data.username);
-                if (response.data.birthDate != null) {
-                    setNewBirthDate(new Date(response.data.birthDate));
+                if (response.data.birthday != null) {
+                    setNewBirthday(new Date(response.data.birthday));
                 }
 
 
@@ -76,7 +76,7 @@ const UserEdit = props => {
 
 
     const [username, setNewUsername] = useState(null);
-    const [birthDate, setNewBirthDate] = useState(null);
+    const [birthday, setNewBirthday] = useState(null);
     //const [date, setDate] = useState(new Date());
 
     //Puts the data to the server and updates the user
@@ -84,7 +84,7 @@ const UserEdit = props => {
         try {
 
             console.log('/users/' + id)
-            const requestBody = JSON.stringify({username, birthDate, id});
+            const requestBody = JSON.stringify({username, birthday, id});
 
             const response = await api.put('/users/' + id, requestBody);
             await new Promise(resolve => setTimeout(resolve, 1000));
@@ -125,7 +125,7 @@ const UserEdit = props => {
                 />
 
                 <legend>
-                    Birthdate
+                    Birthday
 
                 </legend>
                 <p>
@@ -133,9 +133,9 @@ const UserEdit = props => {
                 </p>
                 <DatePicker
                     label="come on"
-                    value={birthDate}
+                    value={birthday}
                     dateFormat="MM-dd-yyyy"
-                    onChange={d => setNewBirthDate(d)}
+                    onChange={d => setNewBirthday(d)}
 
                 />
 

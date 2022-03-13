@@ -18,24 +18,22 @@ const Player = ({user}) => (
 
 const PlayerMoreInfo = ({user}) =>{
 
-
-    if (user.birthDate == null){
-        var birthDate = null;
+    if (user.birthday == null){
+        var Birthday = null;
     }else {
-        const bday = new Date(user.birthDate);
-        var birthDate = bday.toLocaleDateString("de-DE")
+        const tempBirthday = new Date(user.birthday);
+        var birthday = tempBirthday.toLocaleDateString("de-DE")
     }
 
-
-    const registrationDate = new Date(user.registrationDate);
-    const registrationDateStringFormat = registrationDate.toLocaleDateString("de-DE")+" - "+registrationDate.toLocaleTimeString("de-DE");
+    const creation_date = new Date(user.creation_date);
+    const creation_dateString = creation_date.toLocaleDateString("de-DE")+" - "+creation_date.toLocaleTimeString("de-DE");
 
     return(
     <div className="player container1">
-        <div className="player registrationDate">Registration Date: {registrationDateStringFormat} </div>
+        <div className="player registrationDate">Registration Date: {creation_dateString} </div>
 
-        <div className={"player birthDate"}>Birth Date: {birthDate}</div>
-        <div className={"player status"}>Status: {user.status}</div>
+        <div className={"player birthDate"}>Birthday: {birthday}</div>
+        <div className={"player status"}>Status: {user.logged_in}</div>
     </div>
 );
 
